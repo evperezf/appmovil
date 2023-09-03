@@ -8,23 +8,23 @@
 
   <h1 class="center-content" style="padding-bottom: 50px">Welcome {{ userInfoReceived?.name }}</h1>
   
-  <h1 class="center-content">User ID: {{ idUserHtmlRouterLink }}</h1> <!-- Agrega esta línea -->
+ 
   
   <ion-list [inset]="true">
     <ion-list-header>
       <ion-label>User Information: </ion-label>
     </ion-list-header>
     <ion-item>
-      <ion-label>username: {{ idUserHtmlRouterLink?.username }}</ion-label>
+      <ion-label>username: {{ userInfoReceived?.username }}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>name: {{ idUserHtmlRouterLink?.name }}</ion-label>
+      <ion-label>name: {{ userInfoReceived?.name }}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>last name: {{ idUserHtmlRouterLink?.last_name }}</ion-label>
+      <ion-label>last name: {{ userInfoReceived?.last_name }}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>education_level: {{ idUserHtmlRouterLink?.type }}
+      <ion-label>education_level: {{ userInfoReceived?.type }}
       </ion-label>
     </ion-item>
   </ion-list>

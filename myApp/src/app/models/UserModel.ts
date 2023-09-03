@@ -18,12 +18,26 @@ export class UserModel {
     static crearUsuario(event: {
         name: string,
         last_name: string,
-        email: string
+        email: string,
+        birthday: Date | undefined,
+        type: string,
+        username: string,
+        password: string,
+        rut:string,
+        asignatura: string,
+        seccion: string, 
     }){
         return {
-            name: event.email,
+            name: event.name,
             last_name: event.last_name,
-            email: event.email
+            email: event.email,            
+            birthday: event.birthday,
+            type: event.type,
+            username: event.username,
+            password:event.password,
+            rut:event.rut,
+            asignatura: event.asignatura,
+            seccion: event.seccion
         }
     }
 }

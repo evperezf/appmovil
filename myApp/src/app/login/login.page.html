@@ -43,9 +43,9 @@
   <div id="container">
     <ion-list>
       <ion-item>
-        <ion-card #card style="width: 80px; --width: 160px;">
-          <ion-card-content><ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea></ion-card-content>
-        </ion-card>
+        
+          <ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea>
+        
         
       </ion-item>
       <ion-item>
@@ -54,19 +54,7 @@
       
     </ion-list>
     <ion-button expand="block" id="modal-trigger" [routerLink]="['/usuario', userLoginModal.username]">Inicio</ion-button>
-    <ion-modal trigger="modal-trigger" #modal>
-      <!--<ng-template>
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Modal</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="closeModal()">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding"> Modal Content </ion-content>
-      </ng-template>-->
-    </ion-modal>
+    
   </div>
 </ion-content>
 <!---hate me-->
