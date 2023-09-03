@@ -8,6 +8,9 @@ export class UserModel {
         public type: string,
         public username: string,
         public password: string,
+        public rut:string,
+        public asignatura: string,
+        public seccion: string, 
     ) {
     }
 
