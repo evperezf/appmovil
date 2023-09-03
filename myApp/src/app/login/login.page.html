@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!--<ion-header collapse="condense">
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar>
@@ -27,7 +27,7 @@
       </ion-header>
       <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
     </div>
-  </ion-header>
+  </ion-header>!-->
 
   <ion-card>
     <img alt="Silhouette of mountains" src="../../assets/imagen/logo.png" />
@@ -43,14 +43,30 @@
   <div id="container">
     <ion-list>
       <ion-item>
-        <ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea>
+        <ion-card #card style="width: 80px; --width: 160px;">
+          <ion-card-content><ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea></ion-card-content>
+        </ion-card>
+        
       </ion-item>
       <ion-item>
         <ion-input type="password" label="Contraseña" placeholder="Contraseña"></ion-input>
       </ion-item>
       
     </ion-list>
-    <ion-button expand="block" [routerLink]="['/usuario', userLoginModal.username]">Inicio</ion-button>
+    <ion-button expand="block" id="modal-trigger" [routerLink]="['/usuario', userLoginModal.username]">Inicio</ion-button>
+    <ion-modal trigger="modal-trigger" #modal>
+      <!--<ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding"> Modal Content </ion-content>
+      </ng-template>-->
+    </ion-modal>
   </div>
 </ion-content>
 <!---hate me-->
