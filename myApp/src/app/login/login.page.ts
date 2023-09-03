@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
           }
         }
         if (this.listUser[i].type == 'USUARIO') {
-          let sendInfo = this.route.navigate(['/usuario', this.listUser[i].username], userInfoSend);
+          let sendInfo = this.route.navigate(['/usuario'], userInfoSend);
           // Puedes agregar código aquí que se ejecutará después de la navegación
           // Por ejemplo, realizar alguna acción específica para usuarios
           console.log('Usuario autenticado');

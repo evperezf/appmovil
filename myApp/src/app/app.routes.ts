@@ -11,18 +11,19 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'usuario/:username',
+    path: 'usuario/:id',
+    loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
+  },
+  {
+    path: 'usuario',
     loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
   },
   
   {
-    path: '',
+    path: '**',
     redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  //{
-    //path: 'usuario',
-    //loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
-  //},
+    
+  }
+  
 
 ];

@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserModel } from '../models/UserModel';
-import { LoginPage } from '../login/login.page';
+import { UserModel } from 'src/app/models/UserModel';
 
 
 @Component({
@@ -20,17 +19,14 @@ export class UsuarioPage implements OnInit {
   idUserHtmlRouterLink: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
-      this.idUserHtmlRouterLink = params['username'];
-    });
+    this.userInfoReceived = this.route.getCurrentNavigation()?.extras.state?.['user'];
+    // Si quiero obtener un valor por URL usando routerLink
+    this.idUserHtmlRouterLink = this.activatedRoute.snapshot.params['id'];
     // Obteniendo el ID podria buscar en algún arreglo o BD el usuario con el id
     console.log("Valor obtenido desde URL: ",this.idUserHtmlRouterLink);
    }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      this.idUserHtmlRouterLink = params['username'];
-    });
   }
 
 }
