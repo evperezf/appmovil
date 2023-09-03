@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu Content</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">This is the menu content.</ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+    </div>
+  </ion-header>
+
+  <ion-card>
+    <img alt="Silhouette of mountains" src="../../assets/imagen/logo.png" />
+    <ion-card-header>
+      <ion-card-title>Ingresa</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <div id="container">
+    <ion-list>
+      <ion-item>
+        <ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" label="Contraseña" placeholder="Contraseña"></ion-input>
+      </ion-item>
+      
+    </ion-list>
+    <ion-button expand="block" [routerLink]="['/usuario',userLoginModal.username]">Inicio</ion-button>
+  </div>
+</ion-content>
