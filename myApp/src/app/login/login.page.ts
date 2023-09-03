@@ -69,5 +69,19 @@ export class LoginPage implements OnInit {
     this.userLoginModal.password = '';
     console.log('si');
   }
+  
+  ionViewWillLeave() {
+    // Detener y limpiar Typed.js antes de abandonar la página
+    const typedElement = document.querySelector('.typed') as HTMLElement;
+    if (typedElement) {
+      typedElement.innerHTML = ''; // Limpiar el contenido de Typed.js
+    }
+  }
+
+  goToHomePage() {
+    this.route.navigate(['/home']);
+  }
+
+  
 }
 

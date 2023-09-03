@@ -7,5 +7,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/login']">Login</ion-button>
+  <div class="container">
+    <ion-card #card style="width: 120px; --width: 240px;">
+      <ion-card-content>
+        <div #cardText></div>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-button [routerLink]="['/login']">Login</ion-button>
+  </div>
 </ion-content>
+
