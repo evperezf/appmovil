@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!--ionc-card contiene la imagen y el titulo de ingresar-->
   <ion-card>
     <img alt="Silhouette of mountains" src="../../assets/imagen/logo.png" />
     <ion-card-header>
@@ -20,18 +21,19 @@
       
     </ion-card-content>
   </ion-card>
+  <!--termino de la card-->
 
   <div id="container">
     <ion-list>
       <ion-item>
-        <ion-textarea label="Usuario" placeholder="Correo o Usuario"></ion-textarea>
+        <ion-input label="Usuario" placeholder="Correo o Usuario" [(ngModel)]="userLoginModal.username"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" label="Contraseña" placeholder="Contraseña"></ion-input>
+        <ion-input type="password" label="Contraseña" placeholder="Contraseña" [(ngModel)]="userLoginModal.password"></ion-input>
       </ion-item>
       
     </ion-list>
-    <ion-button expand="block" id="modal-trigger" [routerLink]="['/usuario', userLoginModal.username]">Inicio</ion-button>
+    <ion-button expand="block" id="modal-trigger" (click)="userLogin(userLoginModal)">Inicio</ion-button>
   </div>
 </ion-content>
 <!---hate me-->
