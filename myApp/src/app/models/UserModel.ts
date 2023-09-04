@@ -3,10 +3,12 @@ export class UserModel {
       public nombre: string,
       public apPaterno: string,
       public apMaterno: string,
-      public telefono: string,
+      public rut: string,
       public email: string,
       public birthday: Date | undefined,
-      public nivelDeEstudios: string,
+      public carrera: string,
+      public asignatura: string,
+      public seccion: string,
       public jornadaDeEstudios: string,
       public username: string,
       public password: string,
@@ -18,10 +20,12 @@ export class UserModel {
       nombre: string;
       apPaterno: string;
       apMaterno: string;
-      telefono: string;
+      rut: string;
       email: string;
       birthday: Date | undefined;
-      nivelDeEstudios: string;
+      carrera: string;
+      asignatura: string,
+      seccion: string,
       jornadaDeEstudios: string;
       username: string;
       password: string;
@@ -31,10 +35,12 @@ export class UserModel {
           nombre: event.nombre,
           apPaterno: event.apPaterno,
           apMaterno: event.apMaterno,
-          telefono: event.telefono,
+          rut: event.rut,
           email: event.email,
           birthday: event.birthday,
-          nivelDeEstudios: event.nivelDeEstudios,
+          carrera: event.carrera,
+          asignatura: event.asignatura,
+          seccion: event.seccion,
           jornadaDeEstudios: event.jornadaDeEstudios,
           username: event.username,
           password: event.password,

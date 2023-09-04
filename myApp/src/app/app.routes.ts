@@ -17,12 +17,22 @@ export const routes: Routes = [
     path: 'usuario',
     loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
   },
+  {
+    path: 'profesor/:id',
+    loadComponent: () => import('./profesor/profesor.page').then( m => m.ProfesorPage)
+  },
+  {
+    path: 'profesor',
+    loadComponent: () => import('./profesor/profesor.page').then( m => m.ProfesorPage)
+  },
   
   {
     path: '**',
     redirectTo: 'home',
     
-  }
+  },
+  
+
   
 
 ];

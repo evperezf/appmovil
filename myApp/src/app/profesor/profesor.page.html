@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
     <ion-title>{{ userInfoReceived?.tipoUsuario }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -22,12 +19,6 @@
     </ion-item>
     <ion-item>
       <ion-label>Apellidos: {{ userInfoReceived?.apPaterno }} {{ userInfoReceived?.apMaterno }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Rut: {{ userInfoReceived?.rut }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Carrera: {{ userInfoReceived?.carrera }}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Asignatura: {{ userInfoReceived?.asignatura }}</ion-label>

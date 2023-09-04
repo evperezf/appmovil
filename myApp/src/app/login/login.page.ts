@@ -24,9 +24,11 @@ export class LoginPage implements OnInit {
     //new UserModel('Valentina','Gomez','vgomez@gmail.com',undefined,'ADMIN','vgomez','valentina123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V')
   //];
   listUser: UserModel[] = [
-    new UserModel("ESTEBAN","JARA","GONZALEZ","912312334","ejemplo@ejemplo.cl",undefined,"SUPERIOR","VESPERTINA","eg.gonzalezj","es123456","PASAJERO"),
+    new UserModel("EVELYN","PEREZ","FIGUEROA","19775479-6","ejemplo@ejemplo.cl",undefined,"ING. INFORMATICA","APLICACIONES MOVILES","PGY4121_007V","VESPERTINA","ev.perezf","eve1234","ESTUDIANTE"),
 
-    new UserModel("PABLO","TORRES","OYARZUN","987342422","ejemplo@ejemplo.cl",undefined,"SUPERIOR","VESPERTINA","p.oyarzunt","pa123456","CONDUCTOR")
+    new UserModel("FELIPE","VARAS","ANATIBIA","18038247-k","ejemplo@ejemplo.cl",undefined,"ING. INFORMATICA","APLICACIONES MOVILES","PGY4121_007V","VESPERTINA","f.varas","feli1234","ESTUDIANTE"),
+
+    new UserModel("JORGE","GOMEZ","VERDEJO","11111111-1","ejemplo@ejemplo.cl",undefined,"ING. INFORMATICA","APLICACIONES MOVILES","PGY4121_007V","VESPERTINA","j.gomezv","jor1234","PROFESOR")
   ];
 
   userLoginModal: IUserLogin = {
@@ -50,11 +52,12 @@ export class LoginPage implements OnInit {
             user: this.listUser[i]
           }
         }
-        if(this.listUser[i].tipoUsuario == 'PASAJERO'){
+        if(this.listUser[i].tipoUsuario == 'ESTUDIANTE'){
           let sendInfo = this.route.navigate(['/usuario'], userInfoSend);
           return true;
+        
         }else{
-          let sendInfo = this.route.navigate(['/admin'], userInfoSend);
+          let sendInfo = this.route.navigate(['/profesor'], userInfoSend);
           return true;
         }
       }

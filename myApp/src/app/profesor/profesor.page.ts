@@ -5,16 +5,15 @@ import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/UserModel';
 
-
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.page.html',
-  styleUrls: ['./usuario.page.scss'],
+  selector: 'app-profesor',
+  templateUrl: './profesor.page.html',
+  styleUrls: ['./profesor.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class UsuarioPage implements OnInit {
-  
+export class ProfesorPage implements OnInit {
+
   userInfoReceived: UserModel | undefined;
   idUserHtmlRouterLink: any;
 
