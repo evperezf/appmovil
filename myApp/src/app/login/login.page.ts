@@ -17,11 +17,16 @@ import { UserModel } from '../models/UserModel';
   imports: [IonicModule, CommonModule, RouterLinkWithHref, FormsModule]})
 export class LoginPage implements OnInit {
 
+  //listUser: UserModel[] = [
+    //new UserModel('Jorge','Gomez','jgomez@gmail.com',undefined,'USUARIO','jgomez','list','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
+    //new UserModel('Juan','Perez','jperez@gmail.com',undefined,'ADMIN','jperez','juan123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
+    //new UserModel('Carlos','Gomez','cgomez@gmail.com',undefined,'USUARIO','cgomez','carlos123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
+    //new UserModel('Valentina','Gomez','vgomez@gmail.com',undefined,'ADMIN','vgomez','valentina123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V')
+  //];
   listUser: UserModel[] = [
-    new UserModel('Jorge','Gomez','jgomez@gmail.com',undefined,'USUARIO','jgomez','list','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
-    new UserModel('Juan','Perez','jperez@gmail.com',undefined,'ADMIN','jperez','juan123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
-    new UserModel('Carlos','Gomez','cgomez@gmail.com',undefined,'USUARIO','cgomez','carlos123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V'),
-    new UserModel('Valentina','Gomez','vgomez@gmail.com',undefined,'ADMIN','vgomez','valentina123','19775479-6','Programacion de Aplicaciones Moviles','PGY4121-007V')
+    new UserModel("ESTEBAN","JARA","GONZALEZ","912312334","ejemplo@ejemplo.cl",undefined,"SUPERIOR","VESPERTINA","eg.gonzalezj","es123456","PASAJERO"),
+
+    new UserModel("PABLO","TORRES","OYARZUN","987342422","ejemplo@ejemplo.cl",undefined,"SUPERIOR","VESPERTINA","p.oyarzunt","pa123456","CONDUCTOR")
   ];
 
   userLoginModal: IUserLogin = {
@@ -35,33 +40,28 @@ export class LoginPage implements OnInit {
     this.userLoginModalRestart();
   }
 
-  userLogin(userLoginInfo: IUserLogin): boolean {
-    for (let i = 0; i < this.listUser.length; i++) {
-      if ((this.listUser[i].username == userLoginInfo.username) && (this.listUser[i].password == userLoginInfo.password)) {
+  userLogin(userLoginInfo: IUserLogin): boolean{
+
+    for(let i = 0; i < this.listUser.length; i++){
+      if((this.listUser[i].username == userLoginInfo.username) && (this.listUser[i].password == userLoginInfo.password)){
         console.log('User Loged...', this.userLoginModal.username, this.userLoginModal.password);
         let userInfoSend: NavigationExtras = {
           state: {
-            username: this.listUser[i]
-            
+            user: this.listUser[i]
           }
         }
-        if (this.listUser[i].type == 'USUARIO') {
+        if(this.listUser[i].tipoUsuario == 'PASAJERO'){
           let sendInfo = this.route.navigate(['/usuario'], userInfoSend);
-          // Puedes agregar código aquí que se ejecutará después de la navegación
-          // Por ejemplo, realizar alguna acción específica para usuarios
-          console.log('Usuario autenticado');
           return true;
-        } else {
+        }else{
           let sendInfo = this.route.navigate(['/admin'], userInfoSend);
-          // Puedes agregar código aquí que se ejecutará después de la navegación
-          // Por ejemplo, realizar alguna acción específica para administradores
-          console.log('Admin autenticado');
           return true;
         }
       }
     }
     this.userLoginModalRestart();
     return false;
+    
   }
 
   userLoginModalRestart(): void{
