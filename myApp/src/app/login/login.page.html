@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Blank
+      
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -33,7 +33,14 @@
       </ion-item>
       
     </ion-list>
-    <ion-button expand="block" id="modal-trigger" (click)="userLogin(userLoginModal)">Inicio</ion-button>
+    
+    <ion-button expand="block" shape="round"   (click)="userLogin(userLoginModal)">Inicio</ion-button>
+  </div>
+  <div class="ion-padding">
+    <!--
+      Navegación via HTML.
+    -->
+    <a [routerLink]="['/contrasena']">¿Olvidaste tu Contraseña?</a>
+    
   </div>
 </ion-content>
-<!---hate me-->

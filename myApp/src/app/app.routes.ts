@@ -25,12 +25,17 @@ export const routes: Routes = [
     path: 'profesor',
     loadComponent: () => import('./profesor/profesor.page').then( m => m.ProfesorPage)
   },
-  
+  {
+    path: 'contrasena',
+    loadComponent: () => import('./contrasena/contrasena.page').then( m => m.ContrasenaPage)
+  },
+
   {
     path: '**',
     redirectTo: 'home',
     
   },
+  
   
 
   

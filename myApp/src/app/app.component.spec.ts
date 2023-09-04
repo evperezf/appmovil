@@ -16,3 +16,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 });
+//el nuestro esta en el txt - este es de prueva con enrutamiento real
