@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { canActivateUsuario } from './service/guards/new-guard';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,8 @@ export const routes: Routes = [
   },
   {
     path: 'usuario',
-    loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
+    loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage),
+    canActivate: [canActivateUsuario]
   },
   {
     path: 'profesor/:id',

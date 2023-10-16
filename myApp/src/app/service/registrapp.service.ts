@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
-import { BehaviorSubject } from 'rxjs';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,34 +7,23 @@ import { environment } from 'src/environments/environment';
 })
 export class RegistrappService {
   
-  supabase: SupabaseClient;
-  private_currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
+  private supabase_client: SupabaseClient
 
   constructor() { 
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey, {
-      auth:{
-      autoRefreshToken: true,
-      persistSession: true
-    }
-});
-
-  this.supabase.auth.onAuthStateChange((event, session)=> { 
-    console.log('event', event);
-    if(event =='SIGNED_IN'){
-      this.private_currentUser.next(session?.user)
-    }else{
-      this.private_currentUser.next(false)
-    }
-  })
+    this.supabase_client = createClient(environment.supabaseUrl, environment.supabaseKey);
+  
   }
   
   loadUser(){
     
   }
-  singUp(){
+  /*singUp(email: string, password: string) {
+    //const {error, data} = await this.supabase.auth.signUp(credentials);
+    return this.supabase_client.auth.signUp({email, password});
 
-  }
-  singIn(){
-    
+  }*/
+  singIn(email: string, password: string) {
+    //const {error, data} = await this.supabase.auth.signUp(credentials);
+    return this.supabase_client.auth.signInWithPassword({email,password});
   }
 }
