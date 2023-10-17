@@ -53,27 +53,27 @@ export class LoginPage implements OnInit, OnDestroy {
     this.emailModalRestart();*/
   }
 
-  async setObject(user: UserModel) {
+  async setObject(email: UserModel) {
     await Preferences.set({
       key: 'user',
-      value: JSON.stringify(user)
+      value: JSON.stringify(email)
     });
   }
 
   async userLogin(userLoginInfo: IUserLogin) {
     this._usuarioService.getLoginUser(userLoginInfo.email, userLoginInfo.password).subscribe(
       {
-        next: (user) => {
-          console.log(user);
-          if (user) {
+        next: (email) => {
+          console.log(email);
+          if (email) {
             //EXISTE
             let userInfoSend: NavigationExtras = {
               state: {
-                userInfo: user.rut //rut corresponde al id unico de cada usuario
+                userInfo: email.rut //rut corresponde al id unico de cada usuario
               }
             }
             console.log("Usuario existe...");
-            this.setObject(user);
+            this.setObject(email);
             console.log(userInfoSend);
             this.route.navigate(['/usuario'], userInfoSend)
           } else {

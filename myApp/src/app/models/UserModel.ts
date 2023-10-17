@@ -1,18 +1,15 @@
 export class UserModel {
     constructor(
-      public nombre: string,
-      public apPaterno: string,
-      public apMaterno: string,
-      public rut: string,
+      public rut: number, // Debe coincidir con el tipo de dato en Supabase (int8)
+      public dv: string,
+      public pnombre: string,
+      public snombre: string,
+      public apaterno: string,
+      public apmaterno: string,
       public email: string,
-      public birthday: Date | undefined,
-      public carrera: string,
-      public asignatura: string,
-      public seccion: string,
-      public jornadaDeEstudios: string,
-      public username: string,
-      public password: string,
-      public tipoUsuario: string
+      public usuario: string,
+      public contrasenha: string,
+      public tipo_usuario: string
     ) {}
   
     //Metodo dentro de la clase para crear usuario. EJEMPLO solamente.

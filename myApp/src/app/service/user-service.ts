@@ -8,7 +8,7 @@ import { Observable, map } from "rxjs";
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-    URL_SUPABASE = 'https://bfyvyvflefbffidpexsg.supabase.co'
+    URL_SUPABASE = 'https://bfyvyvflefbffidpexsg.supabase.co/rest/v1/'
 
     constructor(private _httpclient: HttpClient) { }
 
@@ -18,13 +18,12 @@ export class UserService {
         return this._httpclient.get<UserModel[]>(this.URL_SUPABASE, { headers: this.supabaseheaders, responseType: 'json' });
     }
 
-    getUser(user_id: string): Observable<UserModel> {
-        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'?user_id=eq.'+user_id, { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
+    getUser(email: string): Observable<UserModel> {
+        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?email=eq.'+email, { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
     }
 
-    getLoginUser(username: string, password: string): Observable<UserModel> {
-        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'?select=user_id,first_name,last_name,email,phone,type(id,name),created_at,empresas(id,name)&username=eq.'+username+'&password=eq.'+password, { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
+    getLoginUser(email: string, contrasenha: string): Observable<UserModel>{
+        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?select=rut,dv,pnombre,snombre,apaterno,apmaterno,email,usuario,contrasenha,tipo_usuario&email=eq.'+email+'&contrasenha=eq.'+contrasenha,{ headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
     }
 }
 
-//los datos como user_id se asocian a la base de datos que presenta el profe?
