@@ -23,7 +23,7 @@ export class UserService {
     }
 
     getLoginUser(email: string, contrasenha: string): Observable<UserModel>{
-        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?select=rut,dv,pnombre,snombre,apaterno,apmaterno,email,usuario,contrasenha,tipo_usuario&email=eq.'+email+'&contrasenha=eq.'+contrasenha,{ headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
+        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?select=email&email=eq.'+email+'&contrasenha=eq.'+contrasenha,{ headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
     }
 }
 
