@@ -31,7 +31,10 @@ export const routes: Routes = [
     path: 'contrasena',
     loadComponent: () => import('./contrasena/contrasena.page').then( m => m.ContrasenaPage)
   },
-
+  {
+    path: 'clases',
+    loadComponent: () => import('./clases/clase.page').then( m => m.ClasePage)
+  },
   {
     path: '**',
     redirectTo: 'home',

@@ -7,18 +7,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ClaseService {
 
   constructor(private _http: HttpClient) { }
 
   superbaseUrl = 'https://bfyvyvflefbffidpexsg.supabase.co/rest/v1/'
   supabaseHeaders = new HttpHeaders().set("apiKey", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmeXZ5dmZsZWZiZmZpZHBleHNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0NzExMzIsImV4cCI6MjAxMTA0NzEzMn0.i1LUnYRAvNM5Hi5brRbJmuRxmxfHYOlYZwnGekrgfVU")
   //alumno puede obtener clase -GET
-holaMundo(cod_clase: String): Observable<any>{
+  ingresar(cod_clase: String): Observable<any>{
     return this._http.get<any>(this.superbaseUrl+'CLASE?cod_clase=eq.'+cod_clase, { headers: this.supabaseHeaders})
   }
 // Puede crearse Clase -POST
-  insertarDatos(cod_clase: Clase): Observable<any>{
+  newClase(cod_clase: Clase): Observable<any>{
     return this._http.post<any>(this.superbaseUrl+'CLASE',cod_clase,{headers: this.supabaseHeaders});
   }
 }
