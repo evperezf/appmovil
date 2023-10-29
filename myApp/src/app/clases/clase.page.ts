@@ -7,6 +7,7 @@ import { ClaseService} from '../service/clase.service';
 import { lastValueFrom } from 'rxjs';
 import { Clase } from '../models/Clase';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { ClaseModel } from '../models/ClaseModel';
 
 @Component({
   selector: 'app-clase',
@@ -17,52 +18,32 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class ClasePage implements OnInit {
 
-    @ViewChild(IonModal) modal!: IonModal;
-
-  message = 'Clase creada';
-  nameClass!: string;
-  claseId!: any;
-  class: any;
-  clases: Clase = {
+  nuevaClase: ClaseModel = {
     cod_clase: '',
     fecha: '',
     horario: '',
-    aula: ''
-
+    aula: '',
+    numrun: 0, // Aquí debes establecer el valor correcto del usuario
+    cod_asignatura: '',
   };
-  constructor(private router: Router, private _claseService: ClaseService) {
-    this.claseId = this.router.getCurrentNavigation()?.extras.state?.['claseId'];
-    console.log(this.claseId)
+
+  constructor(private claseService: ClaseService) {}
+
+  crearNuevaClase() {
+    this.claseService.crearClase(this.nuevaClase).subscribe(
+      (claseCreada) => {
+        console.log('Clase creada:', claseCreada);
+        // Puedes realizar acciones adicionales después de crear la clase
+      },
+      (error) => {
+        console.error('Error al crear la clase:', error);
+        // Manejo de errores
+      }
+    );
   }
 
     ngOnInit() {
-        this.getClase();
-       
+      
     }
-    async getClase() {
-        this.class = await lastValueFrom(this._claseService.ingresar(this.claseId));
-        console.log(this.class);
-      }
-
-      async insertarClase(clase: Clase) {
-        console.info(clase)
-        this.modal.dismiss(this.nameClass, 'confirm');
-        const response = await lastValueFrom(this._claseService.newClase(clase));
-        this.getClase();
-      }
     
-      cancel() {
-        this.modal.dismiss(null, 'cancel');
-      }
-    
-      confirm() {
-    
-      }
-    
-      onWillDismiss(event: Event) {
-        const ev = event as CustomEvent<OverlayEventDetail<string>>;
-        if (ev.detail.role === 'confirm') {
-          this.message = `Hello, ${ev.detail.data}!`;
-        }
-      }
 }

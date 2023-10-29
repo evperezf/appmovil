@@ -24,6 +24,10 @@ export class ProfesorPage implements OnInit {
     // Obteniendo el ID podria buscar en algún arreglo o BD el usuario con el id
     console.log("Valor obtenido desde URL: ",this.idUserHtmlRouterLink);
    }
+   redirigirACrearClase() {
+    // Realiza la redirección a la página de creación de clases
+    this.router.navigate(['/clases']);
+  }
 
   ngOnInit() {
   }

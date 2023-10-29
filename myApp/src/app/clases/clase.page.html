@@ -10,31 +10,37 @@
   <ion-content [fullscreen]="true" color="light">
   
     <h1 class="center-content" style="padding-bottom: 50px">Bienvenido </h1>
+    <form (ngSubmit)="crearNuevaClase()" #claseForm="ngForm">
+      <div class="form-group">
+        <label for="cod_clase">Código de Clase:</label>
+        <input type="text" class="form-control" id="cod_clase" name="cod_clase" [(ngModel)]="nuevaClase.cod_clase" required>
+      </div>
     
-      <ion-list-header>
-        <ion-label>{{ clases.aula }}: </ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label> {{ clases.cod_clase }}</ion-label>
-      </ion-item>
-      <ion-item>
-       
-      </ion-item>
-      <ion-item>
-       
-      </ion-item>
-      <ion-item>
-        
-      </ion-item>
-      <!--   <ion-item>
-   <ion-label>Carrera: {{ userInfoReceived?.carrera }}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Asignatura: {{ userInfoReceived?.asignatura }}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>seccion: {{ userInfoReceived?.seccion }}</ion-label>
-      </ion-item>-->  
-   
-  
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="text" class="form-control" id="fecha" name="fecha" [(ngModel)]="nuevaClase.fecha" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="horario">Horario:</label>
+        <input type="text" class="form-control" id="horario" name="horario" [(ngModel)]="nuevaClase.horario" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="aula">Aula:</label>
+        <input type="text" class="form-control" id="aula" name="aula" [(ngModel)]="nuevaClase.aula" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="numrun">Número de RUN del Usuario:</label>
+        <input type="number" class="form-control" id="numrun" name="numrun" [(ngModel)]="nuevaClase.numrun" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="cod_asignatura">Código de Asignatura:</label>
+        <input type="text" class="form-control" id="cod_asignatura" name="cod_asignatura" [(ngModel)]="nuevaClase.cod_asignatura" required>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Crear Clase</button>
+    </form>
   </ion-content>
