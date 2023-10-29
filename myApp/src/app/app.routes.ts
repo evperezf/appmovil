@@ -39,7 +39,11 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'home',
     
+  },  {
+    path: 'lista-clases',
+    loadComponent: () => import('./lista-clases/lista-clases.page').then( m => m.ListaClasesPage)
   },
+
   
   
 
