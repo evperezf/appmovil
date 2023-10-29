@@ -11,7 +11,7 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'usuario/:id',
+    path: 'usuario/:tipo_usuario',
     loadComponent: () => import('./usuario/usuario.page').then( m => m.UsuarioPage)
   },
   {

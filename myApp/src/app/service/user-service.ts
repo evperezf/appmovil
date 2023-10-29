@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { UserModel } from '../models/UserModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from "rxjs";
+import { Observable, catchError, map } from "rxjs";
 
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    
 
     URL_SUPABASE = 'https://bfyvyvflefbffidpexsg.supabase.co/rest/v1/'
 
@@ -22,8 +23,18 @@ export class UserService {
         return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?email=eq.'+email, { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
     }
 
-    getLoginUser(email: string, contrasenha: string): Observable<UserModel>{
-        return this._httpclient.get<UserModel>(this.URL_SUPABASE+'USUARIO?select=email&email=eq.'+email+'&contrasenha=eq.'+contrasenha,{ headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' });
-    }
+    getLoginUser(email: string, contrasenha: string): Observable<UserModel> {
+        return this._httpclient.get<UserModel>(this.URL_SUPABASE + 'USUARIO',{params: {
+              select: '*,tipo_usuario', // Obtener todos los campos y tipo_usuario
+              email: 'eq.' + email,
+              contrasenha: 'eq.' + contrasenha,
+            },
+            headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'),
+            responseType: 'json',
+          }
+        );
+      }
+    
+  
 }
 

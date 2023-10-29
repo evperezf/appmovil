@@ -27,7 +27,7 @@ export class LoginPage implements OnInit, OnDestroy {
   
 
    userLoginModal: IUserLogin = {
-    username: '',
+    tipo_usuario:'',
     password: '',
     email: ''
     
@@ -61,35 +61,48 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   async userLogin(userLoginInfo: IUserLogin) {
-    this._usuarioService.getLoginUser(userLoginInfo.email, userLoginInfo.password).subscribe(
-      {
-        next: (email) => {
-          console.log(email);
-          if (email) {
-            //EXISTE
-            let userInfoSend: NavigationExtras = {
-              state: {
-                userInfo: email.rut //rut corresponde al id unico de cada usuario
-              }
-            }
-            console.log("Usuario existe...");
-            this.setObject(email);
-            console.log(userInfoSend);
-            this.route.navigate(['/usuario'], userInfoSend)
+    this._usuarioService.getLoginUser(userLoginInfo.email, userLoginInfo.password).subscribe({
+      next: (user: UserModel) => {
+        if (user) {
+          const userInfoSend: NavigationExtras = {
+            state: {
+              userInfo: user.rut,
+            },
+          };
+
+          const tipoUsuario = user.tipo_usuario;
+
+          if (tipoUsuario === '1') {
+            // Si el tipo de usuario es 1 (profesor), redirige a la ruta 'profesor'
+            this.setObject(user);
+            this.route.navigate(['/profesor'], userInfoSend);
+          } else if (tipoUsuario === '2') {
+            // Si el tipo de usuario es 2 (alumno), redirige a la ruta 'usuario'
+            this.setObject(user);
+            this.route.navigate(['/usuario'], userInfoSend);
           } else {
-            //NO EXISTE
-            console.log("Usuario no existe...");
+            console.log("Tipo de usuario no reconocido.");
           }
-        },
-        error: (err) => {
-
-        },
-        complete: () => {
-
+        } else {
+          console.log("Usuario no existe...");
         }
-      }
-    )
+      },
+      error: (err) => {
+        // Manejo de errores
+      },
+      complete: () => {
+        // Acciones completadas
+      },
+    });
   }
+
+
+
+
+
+
+
+
 
 
   userLoginModalRestart(): void {

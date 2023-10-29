@@ -26,7 +26,7 @@ export class UserModel {
       jornadaDeEstudios: string;
       username: string;
       password: string;
-      tipoUsuario: string;
+      tipoUsuario: boolean;
     }) {
       return {
           nombre: event.nombre,
