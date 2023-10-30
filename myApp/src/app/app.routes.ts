@@ -36,10 +36,16 @@ export const routes: Routes = [
     loadComponent: () => import('./clases/clase.page').then( m => m.ClasePage)
   },
   {
+    path: 'listaclases',
+    loadComponent: () => import('./lista-clases/lista-clases.page').then( m => m.ListaClasesPage)
+  },
+    
+  {
     path: '**',
     redirectTo: 'home',
     
-  },  {
+  },
+  {
     path: 'lista-clases',
     loadComponent: () => import('./lista-clases/lista-clases.page').then( m => m.ListaClasesPage)
   },

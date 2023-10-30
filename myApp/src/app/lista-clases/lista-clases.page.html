@@ -1,15 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Listado de Clases</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div>
+  <h2>Buscar Clases por Código de Asignatura</h2>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-list>
-      <!--<ion-item *ngFor="let clase of clases">
-        {{ clase.nombre }}
-      </ion-item>-->
-    </ion-list>
-  </ion-header>
-</ion-content>
+  <label for="cod_asignatura">Código de Asignatura:</label>
+  <input type="text" id="cod_asignatura" [(ngModel)]="cod_asignatura" />
+
+  <button (click)="buscarClases()">Buscar Clases</button>
+
+  <div *ngIf="clases.length > 0">
+    <h3>Clases Encontradas:</h3>
+    <ul>
+      <li *ngFor="let clase of clases">
+        <!-- Muestra la información de las clases -->
+        Código: {{ clase.cod_clase }}<br>
+        Nombre: {{ clase.nombre_clase }}<br>
+        <!-- Agrega más detalles según tu estructura de datos -->
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="clases.length === 0 && cod_asignatura">
+    <p>No se encontraron clases para el código de asignatura proporcionado.</p>
+  </div>
+</div>

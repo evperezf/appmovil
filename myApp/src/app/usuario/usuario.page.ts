@@ -14,11 +14,11 @@ import { UserTypeService } from '../service/user-type.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class UsuarioPage implements OnInit {
-
+  cod_asignatura: string ='';
   userInfoReceived: UserModel | undefined;
   tipo_usuario: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private userType: UserTypeService) {
+  constructor(private activatedRoute: ActivatedRoute, private userType: UserTypeService,  private router: Router) {
     this.tipo_usuario = this.activatedRoute.snapshot.params['id']; // Obtén el valor de la URL
   }
 
@@ -26,5 +26,9 @@ export class UsuarioPage implements OnInit {
     this.userType.getUser(this.tipo_usuario.toString()).subscribe((user: UserModel) => {
       this.userInfoReceived = user; // Asigna el valor del usuario cuando se completa la solicitud
     });
+  }
+  navegarAClase() {
+    
+    this.router.navigate(['/listaclases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
   }
 }

@@ -19,5 +19,10 @@ export class ClaseService {
    
     return this.httpClient.post<ClaseModel>(this.URL_BASE+'CLASE',clase,{headers: this.supabaseHeaders});
   }
-  
+  obtenerClasesPorCodAsignatura(codAsignatura: string): Observable<any> {
+    // Realiza una solicitud HTTP (GET) para obtener clases por su código de asignatura
+    const url = `${this.URL_BASE}/CLASE?cod_asignatura=${codAsignatura}`;
+
+    return this.httpClient.get(url);
+  }
 }
