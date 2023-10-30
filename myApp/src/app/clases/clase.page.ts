@@ -23,8 +23,8 @@ export class ClasePage implements OnInit {
     fecha: '',
     horario: '',
     aula: '',
-    numrun: 0, // Aquí debes establecer el valor correcto del usuario
-    cod_asignatura: '',
+    //numrun: 0, // Aquí debes establecer el valor correcto del usuario
+    //cod_asignatura: '',
   };
 
   constructor(private claseService: ClaseService) {}
