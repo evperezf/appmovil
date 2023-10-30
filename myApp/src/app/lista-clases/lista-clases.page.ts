@@ -6,6 +6,8 @@ import { ClaseModel } from '../models/ClaseModel';
 import { ClaseService } from '../service/clase.service';
 import { SeccionService } from '../service/seccion.service';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-lista-clases',
@@ -38,7 +40,15 @@ export class ListaClasesPage implements OnInit {
   }
   navegarAClase() {
     
-    this.router.navigate(['/clase', this.cod_asignatura]); // Ajusta la ruta según tu configuración
+    this.router.navigate(['/lista_clases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
   }
 
 }
+
+const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmeXZ5dmZsZWZiZmZpZHBleHNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0NzExMzIsImV4cCI6MjAxMTA0NzEzMn0.i1LUnYRAvNM5Hi5brRbJmuRxmxfHYOlYZwnGekrgfVU'; // Reemplaza con tu clave de API
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'apikey': apiKey,
+  }),
+};

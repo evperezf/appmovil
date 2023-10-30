@@ -1,24 +1,38 @@
-<div>
-  <h2>Buscar Clases por Código de Asignatura</h2>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <label for="cod_asignatura">Código de Asignatura:</label>
-  <input type="text" id="cod_asignatura" [(ngModel)]="cod_asignatura" />
-
-  <button (click)="buscarClases()">Buscar Clases</button>
-
-  <div *ngIf="clases.length > 0">
-    <h3>Clases Encontradas:</h3>
-    <ul>
-      <li *ngFor="let clase of clases">
-        <!-- Muestra la información de las clases -->
-        Código: {{ clase.cod_clase }}<br>
-        Nombre: {{ clase.nombre_clase }}<br>
-        <!-- Agrega más detalles según tu estructura de datos -->
-      </li>
-    </ul>
-  </div>
-
-  <div *ngIf="clases.length === 0 && cod_asignatura">
-    <p>No se encontraron clases para el código de asignatura proporcionado.</p>
-  </div>
-</div>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Buscar Clases por Código de Asignatura</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <label for="cod_asignatura">Código de Asignatura:</label>
+      <ion-item>
+        <ion-input placeholder="Código de Asignatura" [(ngModel)]="cod_asignatura"></ion-input>
+      </ion-item>
+      <ion-button expand="block" shape="round" (click)="buscarClases()">Buscar Clases</ion-button>
+      <div *ngIf="clases.length > 0">
+        <h3>Clases Encontradas:</h3>
+        <ion-list>
+          <ion-item *ngFor="let clase of clases">
+            Código: {{ clase.cod_clase }}<br>
+            Nombre: {{ clase.nombre_clase }}<br>
+            <!-- Agrega más detalles según tu estructura de datos -->
+          </ion-item>
+        </ion-list>
+      </div>
+      <div *ngIf="clases.length === 0 && cod_asignatura">
+        <p>No se encontraron clases para el código de asignatura proporcionado.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
