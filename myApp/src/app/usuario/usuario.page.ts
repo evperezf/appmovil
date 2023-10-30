@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/UserModel';
 import { UserTypeService } from '../service/user-type.service';
+import { SeccionService } from '../service/seccion.service';
 
 @Component({
   selector: 'app-usuario',
@@ -14,21 +15,24 @@ import { UserTypeService } from '../service/user-type.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class UsuarioPage implements OnInit {
-  cod_asignatura: string ='';
   userInfoReceived: UserModel | undefined;
-  tipo_usuario: number;
+  idUserHtmlRouterLink: any;
+  cod_asignatura: string ='';
+  clases: any[];
 
-  constructor(private activatedRoute: ActivatedRoute, private userType: UserTypeService,  private router: Router) {
-    this.tipo_usuario = this.activatedRoute.snapshot.params['id']; // Obtén el valor de la URL
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private seccionService: SeccionService) {
+    this.clases = [];
+    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
+    // Si quiero obtener un valor por URL usando routerLink
+    this.idUserHtmlRouterLink = this.activatedRoute.snapshot.params['id'];
+    // Obteniendo el ID podria buscar en algún arreglo o BD el usuario con el id
+    console.log("Valor obtenido desde URL: ",this.idUserHtmlRouterLink);
+   }
+   navegarAClase() {
+    this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
   }
 
   ngOnInit() {
-    this.userType.getUser(this.tipo_usuario.toString()).subscribe((user: UserModel) => {
-      this.userInfoReceived = user; // Asigna el valor del usuario cuando se completa la solicitud
-    });
-  }
-  navegarAClase() {
     
-    this.router.navigate(['/listaclases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
   }
 }

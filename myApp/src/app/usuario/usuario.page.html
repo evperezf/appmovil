@@ -9,22 +9,26 @@
 
 <ion-content [fullscreen]="true" color="light">
   <h1 class="center-content" style="padding-bottom: 50px">Bienvenido {{ userInfoReceived?.pnombre }}</h1>
-  
-  <ion-list-header>
-    <ion-label>INFORMACIÓN DEL {{ userInfoReceived?.tipo_usuario }}: </ion-label>
-  </ion-list-header>
-  <ion-item>
-    <ion-label>Nombre del Estudiante: {{ userInfoReceived?.usuario }}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>Nombre: {{ userInfoReceived?.pnombre }}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>Apellidos: {{ userInfoReceived?.apaterno }} {{ userInfoReceived?.apmaterno }}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>Rut: {{ userInfoReceived?.rut }}</ion-label>
-  </ion-item>
+  <ion-list [inset]="true">
+    <ion-list-header>
+      <ion-label>INFORMACIÓN DEL {{ userInfoReceived?.tipo_usuario }}: </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Nombre del Estudiante: {{ userInfoReceived?.usuario }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre: {{ userInfoReceived?.pnombre }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Apellidos: {{ userInfoReceived?.apaterno }} {{ userInfoReceived?.apmaterno }}</ion-label>
+    </ion-item>
+   <!--   <ion-item>
+    <ion-label>Asignatura: {{ userInfoReceived?.asignatura }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>seccion: {{ userInfoReceived?.seccion }}</ion-label>
+    </ion-item>-->
+  </ion-list>
 
   <ion-button (click)="navegarAClase()">Ingresar a Clase</ion-button>
 

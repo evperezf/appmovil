@@ -23,7 +23,7 @@ import { Preferences } from '@capacitor/preferences';
   imports: [IonicModule, CommonModule, RouterLinkWithHref, FormsModule, HttpClientModule, NgFor, NgForOf,ReactiveFormsModule],
   providers: [UserService]})
 
-export class LoginPage implements OnInit, OnDestroy {
+export class LoginPage implements OnInit {
   
 
    userLoginModal: IUserLogin = {
@@ -44,9 +44,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   constructor(private route: Router, private _usuarioService:UserService ) {}
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  
 
   ngOnInit(): void {
     /*this.userLoginModalRestart();
