@@ -20,26 +20,35 @@ export class ProfesorPage implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
     console.log("este es el userInfoReceived ",this.userInfoReceived);
+    this.convertirTipoUsuarioNombre();
     // Si quiero obtener un valor por URL usando routerLink
     
   }
-   redirigirACrearClase() {
+  redirigirACrearClase() {
     // Realiza la redirección a la página de creación de clases
     this.router.navigate(['/clases']);
-    this.convertirTipoUsuarioNombre();
+    
     console.log("nombre profesor ",this.tipoUsuarioNombre);
+  }
+  convertirTipoUsuarioNombre() {
+    if (this.userInfoReceived) {
+      const tipoUsuario = parseInt(this.userInfoReceived?.tipo_usuario, 10);
+      if (!isNaN(tipoUsuario))
+      if (tipoUsuario === 1) {
+        this.tipoUsuarioNombre = 'PROFESOR';
+        console.log("nombre profesor ",this.tipoUsuarioNombre);
+      } else {
+        this.tipoUsuarioNombre = 'Otro'; // Otra opción de manejo
+      }  
     }
-    convertirTipoUsuarioNombre() {
-      if (this.userInfoReceived) {
-        const tipoUsuario = this.userInfoReceived.tipo_usuario;
-        if (tipoUsuario === 1) {
-         this.tipoUsuarioNombre = 'Profesor';
-         console.log("nombre profesor ",this.tipoUsuarioNombre);
-        } else {
-         this.tipoUsuarioNombre = 'Otro'; // Otra opción de manejo
-        }  
-      }
+  }
+  
+  capitalizeFirstLetter(text: string | undefined): string {
+    if (text) {
+      return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
     }
+    return ''; // En caso de que sea undefined
+  }
   
 
   ngOnInit() {

@@ -9,7 +9,7 @@ export class UserModel {
       public email: string,
       public usuario: string,
       public contrasenha: string,
-      public tipo_usuario: number
+      public tipo_usuario: string,
     ) {}
   
     //Metodo dentro de la clase para crear usuario. EJEMPLO solamente.
