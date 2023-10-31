@@ -14,7 +14,6 @@ import { Preferences } from '@capacitor/preferences';
 
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -44,17 +43,16 @@ export class LoginPage implements OnInit {
 
   constructor(private route: Router, private _usuarioService:UserService ) {}
 
-  
 
   ngOnInit(): void {
     /*this.userLoginModalRestart();
     this.emailModalRestart();*/
   }
 
-  async setObject(email: UserModel) {
+  async setObject(user: UserModel) {
     await Preferences.set({
       key: 'user',
-      value: JSON.stringify(email)
+      value: JSON.stringify(user)
     });
   }
 
@@ -62,20 +60,35 @@ export class LoginPage implements OnInit {
     this._usuarioService.getLoginUser(userLoginInfo.email, userLoginInfo.password).subscribe({
       next: (user: UserModel) => {
         if (user) {
+          //agregado
+          this.setObject(user);
+          //agregado
           const userInfoSend: NavigationExtras = {
             state: {
-              userInfo: user.rut,
+              userInfo: user,
             },
           };
-
-          const tipoUsuario = user.tipo_usuario;
+          this.route.navigate(['/usuario'], userInfoSend);
+          
+          const tipoUsuario = user.tipo_usuario.toString();
 
           if (tipoUsuario === '1') {
             // Si el tipo de usuario es 1 (profesor), redirige a la ruta 'profesor'
+            const userInfoSend: NavigationExtras = {
+              state: {
+                userInfo: user,
+              },
+            };
             this.setObject(user);
             this.route.navigate(['/profesor'], userInfoSend);
           } else if (tipoUsuario === '2') {
             // Si el tipo de usuario es 2 (alumno), redirige a la ruta 'usuario'
+            const userInfoSend: NavigationExtras = {
+              state: {
+                userInfo: user,
+              },
+            };
+
             this.setObject(user);
             this.route.navigate(['/usuario'], userInfoSend);
           } else {
@@ -93,102 +106,14 @@ export class LoginPage implements OnInit {
       },
     });
   }
-
-
-
-
-
-
-
-
-
+  // En la página anterior
 
   userLoginModalRestart(): void {
     this.userLoginModal.email = '';
     this.userLoginModal.password = '';
   }
-  /*signUp(){
-    this.registrappService({'',''}).then(data => {
-      if(data,error){
-        
-      }
-    })
-  }
-  userLogin(userLoginInfo: IUserLogin): boolean{
-
-    for(let i = 0; i < this.listUser.length; i++){
-      if((this.listUser[i].username == userLoginInfo.username) && (this.listUser[i].password == userLoginInfo.password)){
-        console.log('User Loged...', this.userLoginModal.username, this.userLoginModal.password);
-        let userInfoSend: NavigationExtras = {
-          state: {
-            user: this.listUser[i]
-          }
-        }
-        if(this.listUser[i].tipoUsuario == 'ESTUDIANTE'){
-          let sendInfo = this.route.navigate(['/usuario'], userInfoSend);
-          return true;
-        
-        }else{
-          let sendInfo = this.route.navigate(['/profesor'], userInfoSend);
-          return true;
-        }
-      }
-    }
-    this.userLoginModalRestart();
-    return false;
-    
-  }
-  /* */
- /* EmailLogin(userLoginInfo: EmailLogin): boolean{
-    console.log('Click en enlace de recuperación de contraseña');
-
-    for(let i = 0; i < this.listUser.length; i++){
-      if((this.listUser[i].email == userLoginInfo.email)){
-        console.log('User Loged...', this.userRecuperarModal.email);
-        let userInfoSend: NavigationExtras = {
-          state: {
-            user: this.listUser[i]
-          }
-        }
-        if(this.listUser[i].tipoUsuario == 'ESTUDIANTE'){
-          let sendInfo = this.route.navigate(['/contrasena'], userInfoSend);
-          return true;
-        
-        }else{
-          let sendInfo = this.route.navigate(['/contrasena'], userInfoSend);
-          return true;
-        }
-      }
-    }
-    this.userLoginModalRestart();
-    return false;
-    
-  }
-
-  /* */
-  /*userLoginModalRestart(): void{
-    this.userLoginModal.username = '';
-    this.userLoginModal.password = '';
-    console.log('si');
-  }
-  emailModalRestart(): void{
-    this.userRecuperarModal.email = '';
-   
-    console.log('si');
-  }
   
-  
-  ionViewWillLeave() {
-    // Detener y limpiar Typed.js antes de abandonar la página
-    const typedElement = document.querySelector('.typed') as HTMLElement;
-    if (typedElement) {
-      typedElement.innerHTML = ''; // Limpiar el contenido de Typed.js
-    }
-  }
 
-  goToHomePage() {
-    this.route.navigate(['/home']);
-  }*/
 
   
 }

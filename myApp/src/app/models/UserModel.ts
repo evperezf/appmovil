@@ -1,6 +1,6 @@
 export class UserModel {
     constructor(
-      public rut: number, // Debe coincidir con el tipo de dato en Supabase (int8)
+      public numrun: number, // Debe coincidir con el tipo de dato en Supabase (int8)
       public dv: string,
       public pnombre: string,
       public snombre: string,
@@ -9,7 +9,7 @@ export class UserModel {
       public email: string,
       public usuario: string,
       public contrasenha: string,
-      public tipo_usuario: string
+      public tipo_usuario: number
     ) {}
   
     //Metodo dentro de la clase para crear usuario. EJEMPLO solamente.

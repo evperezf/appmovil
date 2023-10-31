@@ -15,19 +15,32 @@ import { UserModel } from 'src/app/models/UserModel';
 export class ProfesorPage implements OnInit {
 
   userInfoReceived: UserModel | undefined;
-  idUserHtmlRouterLink: any;
-
+  tipoUsuarioNombre: string | undefined;
+  
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
+    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
+    console.log("este es el userInfoReceived ",this.userInfoReceived);
     // Si quiero obtener un valor por URL usando routerLink
-    this.idUserHtmlRouterLink = this.activatedRoute.snapshot.params['id'];
-    // Obteniendo el ID podria buscar en algún arreglo o BD el usuario con el id
-    console.log("Valor obtenido desde URL: ",this.idUserHtmlRouterLink);
-   }
+    
+  }
    redirigirACrearClase() {
     // Realiza la redirección a la página de creación de clases
     this.router.navigate(['/clases']);
-  }
+    this.convertirTipoUsuarioNombre();
+    console.log("nombre profesor ",this.tipoUsuarioNombre);
+    }
+    convertirTipoUsuarioNombre() {
+      if (this.userInfoReceived) {
+        const tipoUsuario = this.userInfoReceived.tipo_usuario;
+        if (tipoUsuario === 1) {
+         this.tipoUsuarioNombre = 'Profesor';
+         console.log("nombre profesor ",this.tipoUsuarioNombre);
+        } else {
+         this.tipoUsuarioNombre = 'Otro'; // Otra opción de manejo
+        }  
+      }
+    }
+  
 
   ngOnInit() {
   }
