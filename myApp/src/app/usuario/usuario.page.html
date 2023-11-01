@@ -3,7 +3,7 @@
     <ion-buttons>
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ userInfoReceived?.tipo_usuario }}</ion-title>
+    <ion-title>{{ capitalizeFirstLetter(tipoUsuarioNombre) }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   <h1 class="center-content" style="padding-bottom: 50px">Bienvenido {{ userInfoReceived?.pnombre }}</h1>
   <ion-list [inset]="true" >
     <ion-list-header>
-      <ion-label>INFORMACIÓN DEL {{ userInfoReceived?.tipo_usuario }}: </ion-label>
+      <ion-label>INFORMACIÓN DEL {{ tipoUsuarioNombre }}: </ion-label>
     </ion-list-header>
     <ion-item>
       <ion-label>Nombre del Estudiante: {{ userInfoReceived?.usuario }}</ion-label>

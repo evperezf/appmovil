@@ -16,25 +16,41 @@ import { SeccionService } from '../service/seccion.service';
 })
 export class UsuarioPage implements OnInit {
   userInfoReceived: UserModel | undefined;
-  idUserHtmlRouterLink: any;
   cod_asignatura: string ='';
   clases: any[];
+  tipoUsuarioNombre: string | undefined;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private seccionService: SeccionService) {
     this.clases = [];
-    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
-    // Si quiero obtener un valor por URL usando routerLink
-    this.idUserHtmlRouterLink = this.activatedRoute.snapshot.params['id'];
-    // Obteniendo el ID podria buscar en algún arreglo o BD el usuario con el id
-    console.log("Valor obtenido desde URL: ",this.idUserHtmlRouterLink);
+    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
     console.log("userInfoReceived: ", this.userInfoReceived);
+    this.convertirTipoUsuarioNombre();
    }
    navegarAClase() {
     this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
   }
 
+  convertirTipoUsuarioNombre() {
+    if (this.userInfoReceived) {
+      const tipoUsuario = parseInt(this.userInfoReceived?.tipo_usuario, 10);
+      if (!isNaN(tipoUsuario))
+      if (tipoUsuario === 2) {
+        this.tipoUsuarioNombre = 'ALUMNO';
+        console.log("nombre alumno es ",this.tipoUsuarioNombre);
+      } else {
+        this.tipoUsuarioNombre = 'Otro'; // Otra opción de manejo
+      }  
+    }
+  }
+  
+  capitalizeFirstLetter(text: string | undefined): string {
+    if (text) {
+      return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    }
+    return ''; // En caso de que sea undefined
+  }
+
   ngOnInit() {
-    console.log("userInfoReceived en ngOnInit: ", this.userInfoReceived);
     
   }
 }
