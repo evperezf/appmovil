@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/UserModel';
 import { UserTypeService } from '../service/user-type.service';
 import { SeccionService } from '../service/seccion.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+
 
 @Component({
   selector: 'app-usuario',
@@ -48,6 +50,22 @@ export class UsuarioPage implements OnInit {
       return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
     }
     return ''; // En caso de que sea undefined
+  }
+
+  async tomarFoto() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+      });
+
+      console.log('Imagen capturada:', image.webPath);
+      // Aquí puedes manejar la imagen capturada, por ejemplo, mostrarla en la interfaz o realizar alguna acción con ella
+    } catch (error) {
+      console.error('Error al capturar imagen:', error);
+    }
   }
 
   ngOnInit() {
