@@ -7,6 +7,8 @@ import { UserModel } from 'src/app/models/UserModel';
 import { UserTypeService } from '../service/user-type.service';
 import { SeccionService } from '../service/seccion.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+
 
 
 @Component({
@@ -22,14 +24,14 @@ export class UsuarioPage implements OnInit {
   clases: any[];
   tipoUsuarioNombre: string | undefined;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private seccionService: SeccionService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private seccionService: SeccionService, private qrScanner: QRScanner) {
     this.clases = [];
     this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
     console.log("userInfoReceived: ", this.userInfoReceived);
     this.convertirTipoUsuarioNombre();
    }
    navegarAClase() {
-    this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
+    //this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
   }
 
   convertirTipoUsuarioNombre() {
@@ -67,6 +69,34 @@ export class UsuarioPage implements OnInit {
       console.error('Error al capturar imagen:', error);
     }
   }
+  scanQRCode() {
+    this.qrScanner.prepare()
+       .then((status: QRScannerStatus) => {
+         if (status.authorized) {
+           // start scanning
+           let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+             console.log('QR Code Matched:', text);
+             // TODO: Implementar la lógica para manejar el código QR leído.
+             // Por ejemplo, podría ser un enlace o una información para actualizar en la base de datos.
+   
+             // deactivate the scanner after successful scan
+             this.qrScanner.destroy().then(() => {
+               scanSub.unsubscribe(); // stop scanning
+             });
+           });
+   
+           // show camera preview
+           this.qrScanner.show();
+   
+           // wait for user to scan something, then the observable callback will be called
+         } else if (status.denied) {
+           console.log('Permiso de cámara negado.');
+         } else {
+           console.log('No se pudo acceder a la cámara.');
+         }
+       })
+       .catch((e: any) => console.log('Error:', e));
+   }
 
   ngOnInit() {
     

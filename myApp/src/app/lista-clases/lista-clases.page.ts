@@ -38,10 +38,10 @@ export class ListaClasesPage implements OnInit {
       }
     );
   }
-  navegarAClase() {
+ // navegarAClase() {
     
-    this.router.navigate(['/lista_clases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
-  }
+ //   this.router.navigate(['/lista_clases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
+//  }
 
 }
 
