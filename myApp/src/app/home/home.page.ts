@@ -19,13 +19,20 @@ export class HomePage {
 
 
   private animation: any;
+  private typed: Typed | undefined;
 
   constructor(private animationCtrl: AnimationController) {}
 
   ionViewWillEnter() {
     // Obtén la duración de la animación del ion-card
     const animationDuration = 1000; // Duración en milisegundos, ajusta según tu animación
-
+  
+    // Detener la animación si ya está en reproducción
+    if (this.animation && this.animation.isPlaying) {
+      this.animation.pause();
+      this.animation.progress(0); // Reiniciar la animación al principio
+    }
+  
     this.animation = this.animationCtrl
       .create()
       .addElement(this.card.nativeElement)
@@ -35,17 +42,34 @@ export class HomePage {
         { offset: 0.72, width: 'var(--width)' },
         { offset: 1, width: '270px' },
       ]);
-
-      this.animation.play();
+  
+    this.animation.play();
+  
+  
     
 
     // Configurar y ejecutar la animación de texto con la velocidad calculada
     const options = {
       strings: ['Para ingresar, haz click en Login'],
-      typeSpeed: 70, // Velocidad de escritura (en milisegundos)
+      typeSpeed: 30, // Velocidad de escritura (en milisegundos)
       showCursor: false, // Opcional: ocultar el cursor de escritura
     };
 
-    const typed = new Typed(this.cardText.nativeElement, options);
+    // Detener la animación de Typed si ya está en reproducción
+    if (this.typed) {
+      this.typed.destroy();
+    }
+
+    // Crear una nueva instancia de Typed
+    this.typed = new Typed(this.cardText.nativeElement, options);
+  }
+
+  ionViewWillLeave() {
+    // Detener la animación de Typed al salir de la página para evitar superposiciones
+    if (this.typed) {
+      this.typed.destroy();
+    }
   }
 }
+
+

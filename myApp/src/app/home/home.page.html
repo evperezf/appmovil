@@ -1,3 +1,4 @@
+<!-- Encabezado de la página -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -6,15 +7,21 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- Contenido principal -->
 <ion-content [fullscreen]="true">
+  <!-- Contenedor principal -->
   <div class="container">
+    <!-- Tarjeta con contenido -->
     <ion-card #card style="width: 120px; --width: 240px;">
       <ion-card-content>
+        <!-- Contenido de la tarjeta -->
         <div #cardText></div>
       </ion-card-content>
     </ion-card>
     
+    <!-- Botón para dirigirse a la página de inicio de sesión -->
     <ion-button [routerLink]="['/login']">Login</ion-button>
   </div>
 </ion-content>
+
 

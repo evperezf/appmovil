@@ -45,8 +45,11 @@ export class LoginPage implements OnInit {
 
 
   ngOnInit(): void {
-    /*this.userLoginModalRestart();
-    this.emailModalRestart();*/
+    this.userLoginModalRestart();
+  }
+
+  ionViewWillEnter(): void {
+    this.userLoginModalRestart();
   }
 
   async setObject(user: UserModel) {
