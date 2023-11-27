@@ -3,13 +3,21 @@ import { IonCard, IonicModule } from '@ionic/angular';
 import { RouterLinkWithHref } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import Typed from 'typed.js';
+import { Injectable } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
+
+@Injectable({ 
+  providedIn: 'root' 
+})
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLinkWithHref],
+  imports: [IonicModule, RouterLinkWithHref,CommonModule,HttpClientModule],
 })
 export class HomePage {
   @ViewChild(IonCard, { read: ElementRef })

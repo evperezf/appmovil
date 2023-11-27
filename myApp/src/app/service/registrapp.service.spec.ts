@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { RegistrappService } from './registrapp.service';
 
+
 describe('RegistrappService', () => {
   let service: RegistrappService;
 

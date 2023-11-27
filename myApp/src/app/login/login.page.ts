@@ -11,8 +11,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { UserService } from '../service/user-service';
 import { Preferences } from '@capacitor/preferences';
+import { Injectable } from "@angular/core";
 
 
+@Injectable({ 
+  providedIn: 'root' 
+})
 
 @Component({
   selector: 'app-login',
@@ -35,11 +39,11 @@ export class LoginPage implements OnInit {
   public userExists?: UserModel;
   public userList$!: Subscription;
   public userList: UserModel[] = [];
-  /*
+  
   userRecuperarModal: EmailLogin = {
     email: '',
     
-  };*/
+  };
 
   constructor(private route: Router, private _usuarioService:UserService ) {}
 

@@ -6,14 +6,20 @@ import { ClaseModel } from '../models/ClaseModel';
 import { ClaseService } from '../service/clase.service';
 import { SeccionService } from '../service/seccion.service';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+
+
+@Injectable({ 
+  providedIn: 'root' 
+})
 
 @Component({
   selector: 'app-lista-clases',
   templateUrl: './lista-clases.page.html',
   styleUrls: ['./lista-clases.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,HttpClientModule]
 })
 export class ListaClasesPage implements OnInit {
   cod_asignatura: string = '';

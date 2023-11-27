@@ -4,13 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/UserModel';
+import { Injectable } from "@angular/core";
+import { HttpClientModule } from '@angular/common/http';
+
+
+@Injectable({ 
+  providedIn: 'root' 
+})
+
 
 @Component({
   selector: 'app-profesor',
   templateUrl: './profesor.page.html',
   styleUrls: ['./profesor.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,HttpClientModule]
 })
 export class ProfesorPage implements OnInit {
 

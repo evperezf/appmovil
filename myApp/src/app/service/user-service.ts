@@ -5,7 +5,9 @@ import { Observable, catchError, map } from "rxjs";
 
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ 
+  providedIn: 'root' 
+})
 export class UserService {
     
 

@@ -4,6 +4,8 @@ import { catchError, map } from "rxjs/operators";
 import { of } from "rxjs";
 import { UserService } from "../user-service";
 
+
+
 export const canActivateUsuario: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
