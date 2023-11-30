@@ -25,4 +25,10 @@ export class ClaseService {
 
     return this.httpClient.get(url);
   }
+  obtenerCodigoClase(cod_clase: string): Observable<any> {
+    // Realiza una solicitud HTTP (GET) para obtener clases por su código de asignatura
+    const url = `${this.URL_BASE}/CLASE?cod_clase=${cod_clase}`;
+
+    return this.httpClient.get(url);
+  }
 }
