@@ -22,8 +22,8 @@ import { Injectable } from "@angular/core";
   imports: [IonicModule, CommonModule, FormsModule,HttpClientModule]
 })
 export class ListaClasesPage implements OnInit {
-  cod_asignatura: string = '';
-  clases: any[] = []; // Asegúrate de que el tipo sea el correcto según tu estructura de datos
+  cod_clase: string = '';
+  clases: string[] = []; // Asegúrate de que el tipo sea el correcto según tu estructura de datos
   selectedClase: string = ''; // Variable para almacenar el código de clase seleccionado
 
   constructor(private seccionService: SeccionService, private router: Router) {}
@@ -31,9 +31,10 @@ export class ListaClasesPage implements OnInit {
   ngOnInit() {}
 
   buscarClases() {
-    this.seccionService.obtenerClasesPorCodAsignatura(this.cod_asignatura).subscribe(
-      (data: any) => {
+    this.seccionService.obtenerCodigosClase().subscribe(
+      (data: string[]) => {
         this.clases = data; // Asigna la respuesta a la propiedad 'clases'
+        console.log(this.clases);
       },
       (error) => {
         console.error('Error al buscar clases:', error);

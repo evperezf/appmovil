@@ -10,19 +10,19 @@
     <ion-card-content>
       <!-- Selector de código de asignatura -->
       <ion-item>
-        <ion-label>Código de Asignatura:</ion-label>
-        <ion-select placeholder="Seleccionar código de asignatura" [(ngModel)]="cod_asignatura">
-          <!-- Opciones generadas dinámicamente -->
-          <ion-select-option *ngFor="let clase of clases" [value]="clase.cod_asignatura">
-            {{ clase.nombre_asignatura }}
-          </ion-select-option>
-        </ion-select>
+        <ion-label position="stacked">Código de Asignatura:</ion-label>
+        <ion-input placeholder="Ingrese el código de clase" [(ngModel)]="cod_clase"></ion-input>
       </ion-item>
 
       <!-- Botón para buscar clases -->
       <ion-button expand="block" shape="round" (click)="buscarClases()">Buscar Clases</ion-button>
 
-      <!-- Resto del contenido... -->
+      <!-- Mostrar los códigos de clase después de obtenerlos -->
+      <ion-list *ngIf="clases.length > 0">
+        <ion-item *ngFor="let clase of clases">
+          {{ clase }}
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>

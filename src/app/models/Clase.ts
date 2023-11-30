@@ -3,5 +3,7 @@ export interface Clase{
     fecha: string;
     horario: string;
     aula: string;
+    numrun: string;
+    cod_asignatura: string;
 
 }

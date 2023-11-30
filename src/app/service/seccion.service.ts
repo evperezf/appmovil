@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Clase } from '../models/Clase';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,14 @@ export class SeccionService {
     const url = `${this.URL_BASE}/CLASE?cod_asignatura=${codAsignatura}`;
 
     return this.http.get(url);
+  }
+  obtenerCodigosClase(): Observable<string[]> {
+    return this.http.get<string[]>(this.URL_BASE + 'CLASE', {
+      params: {
+        select: 'cod_clase', // Filtrar para obtener solo la columna cod_clase
+      },
+      headers: this.supabaseHeaders.set('Accept', 'application/json'),
+      responseType: 'json',
+    });
   }
 }
