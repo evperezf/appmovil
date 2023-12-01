@@ -22,20 +22,15 @@
             {{ clase.cod_clase }}
           </ion-select-option>
         </ion-select>
-        
       </ion-item>
+      
 
       <!-- Botón para buscar clases -->
       <ion-card-content>
-        <ion-button expand="block" shape="round" (click)="buscarClases()">Generar QR</ion-button>
+        <ion-button expand="block" shape="round" (click)="generarCodigoQR()">Generar QR</ion-button>
       </ion-card-content>
 
-      <!-- Mostrar los códigos de clase después de obtenerlos -->
-      <!--ion-list *ngIf="clases.length > 0">
-        <ion-item *ngFor="let clase of clases">
-          {{ clases }}
-        </ion-item>
-      </ion-list-->
+      <img [src]="qrCodeURL" alt="" title="" *ngIf="qrCodeURL" />
     </ion-card-content>
   </ion-card>
 </ion-content>

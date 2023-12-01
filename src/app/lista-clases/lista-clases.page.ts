@@ -27,6 +27,7 @@ export class ListaClasesPage implements OnInit {
   cod_clase: string = '';
   clases: any[] = []; // Asegúrate de que el tipo sea el correcto según tu estructura de datos
   selectedClase: string = ''; // Variable para almacenar el código de clase seleccionado
+  qrCodeURL: string | undefined;
 
   constructor(private seccionService: SeccionService, private router: Router) {}
 
@@ -45,10 +46,19 @@ export class ListaClasesPage implements OnInit {
       }
     );
   }
- // navegarAClase() {
-    
- //   this.router.navigate(['/lista_clases', this.cod_asignatura]); // Ajusta la ruta según tu configuración
-//  }
+  
+  generarCodigoQR() {
+    // Aquí construyes la URL para generar el código QR con el valor seleccionado
+    const urlBase = 'https://api.qrserver.com/v1/create-qr-code/';
+    const data = `data=${this.cod_clase}`;
+    const size = 'size=100x100';
+
+    // Construyes la URL completa para la imagen del código QR
+    this.qrCodeURL = `${urlBase}?${data}&${size}`;
+
+    // Luego puedes utilizar qrCodeURL donde lo necesites en tu componente HTML
+    console.log(this.qrCodeURL); // Para propósitos de demostración, imprime la URL en la consola
+  }
 
   navegarAClase() {
     if (this.selectedClase) {
@@ -58,6 +68,8 @@ export class ListaClasesPage implements OnInit {
       // Aquí puedes manejar el caso en el que no se haya seleccionado ninguna clase
     }
   }
+
+
 }
 
 const apiKey =
