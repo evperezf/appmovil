@@ -1,5 +1,10 @@
 <ion-header [translucent]="true">
-  <!-- Encabezado -->
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -9,20 +14,28 @@
     </ion-card-header>
     <ion-card-content>
       <!-- Selector de código de asignatura -->
+      
       <ion-item>
         <ion-label position="stacked">Código de Asignatura:</ion-label>
-        <ion-input placeholder="Ingrese el código de clase" [(ngModel)]="cod_clase"></ion-input>
+        <ion-select [(ngModel)]="cod_clase">
+          <ion-select-option *ngFor="let clase of clases" [value]="clase.cod_clase">
+            {{ clase.cod_clase }}
+          </ion-select-option>
+        </ion-select>
+        
       </ion-item>
 
       <!-- Botón para buscar clases -->
-      <ion-button expand="block" shape="round" (click)="buscarClases()">Buscar Clases</ion-button>
+      <ion-card-content>
+        <ion-button expand="block" shape="round" (click)="buscarClases()">Generar QR</ion-button>
+      </ion-card-content>
 
       <!-- Mostrar los códigos de clase después de obtenerlos -->
-      <ion-list *ngIf="clases.length > 0">
+      <!--ion-list *ngIf="clases.length > 0">
         <ion-item *ngFor="let clase of clases">
-          {{ clase }}
+          {{ clases }}
         </ion-item>
-      </ion-list>
+      </ion-list-->
     </ion-card-content>
   </ion-card>
 </ion-content>

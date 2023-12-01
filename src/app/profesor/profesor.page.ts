@@ -38,6 +38,9 @@ export class ProfesorPage implements OnInit {
     
     console.log("nombre profesor ",this.tipoUsuarioNombre);
   }
+  navegarAClase() {
+    this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
+  }
   convertirTipoUsuarioNombre() {
     if (this.userInfoReceived) {
       const tipoUsuario = parseInt(this.userInfoReceived?.tipo_usuario, 10);

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-clases.page.scss'],
 })
 export class ListaClasesPage1 implements OnInit {
+  cod_clase: string = '';
   clases: any[] = [];
 
   constructor() {}
@@ -15,9 +16,9 @@ export class ListaClasesPage1 implements OnInit {
   ngOnInit() {
     // Simulación de datos de clases (reemplaza esto con tus datos reales)
     this.clases = [
-      { nombre: 'Clase 1' },
-      { nombre: 'Clase 2' },
-      { nombre: 'Clase 3' },
+      { cod_clase: '' },
+      { cod_clase: '' },
+      { cod_clase: '' },
     ];
   }
 }

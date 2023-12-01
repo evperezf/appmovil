@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ClaseModel } from '../models/ClaseModel';
-import { ClaseService } from '../service/clase.service';
 import { SeccionService } from '../service/seccion.service';
 import { Router } from '@angular/router';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { Clase } from '../models/Clase'; // Asegúrate de que la ruta sea correcta
+import { ClaseService } from '../service/clase.service';
+
 
 
 @Injectable({ 
@@ -23,12 +25,14 @@ import { Injectable } from "@angular/core";
 })
 export class ListaClasesPage implements OnInit {
   cod_clase: string = '';
-  clases: string[] = []; // Asegúrate de que el tipo sea el correcto según tu estructura de datos
+  clases: any[] = []; // Asegúrate de que el tipo sea el correcto según tu estructura de datos
   selectedClase: string = ''; // Variable para almacenar el código de clase seleccionado
 
   constructor(private seccionService: SeccionService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.buscarClases();
+  }
 
   buscarClases() {
     this.seccionService.obtenerCodigosClase().subscribe(

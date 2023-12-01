@@ -33,7 +33,7 @@ export class UsuarioPage implements OnInit {
     this.convertirTipoUsuarioNombre();
    }
    navegarAClase() {
-    this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
+    //this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
   }
 
   convertirTipoUsuarioNombre() {
