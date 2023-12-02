@@ -40,6 +40,7 @@ export class ProfesorPage implements OnInit {
   }
   navegarAClase() {
     this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
+    return true;
   }
   convertirTipoUsuarioNombre() {
     if (this.userInfoReceived) {

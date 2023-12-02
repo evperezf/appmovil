@@ -7,6 +7,7 @@ import { UserModel } from 'src/app/models/UserModel';
 import { UserTypeService } from '../service/user-type.service';
 import { SeccionService } from '../service/seccion.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BarcodeScanner, BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
 
 
 @Injectable({ 
@@ -25,6 +26,7 @@ export class UsuarioPage implements OnInit {
   cod_asignatura: string ='';
   clases: any[];
   tipoUsuarioNombre: string | undefined;
+  cod_clase: any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private seccionService: SeccionService) {
     this.clases = [];
@@ -32,9 +34,34 @@ export class UsuarioPage implements OnInit {
     console.log("userInfoReceived: ", this.userInfoReceived);
     this.convertirTipoUsuarioNombre();
    }
-   navegarAClase() {
-    //this.router.navigate(['/listaclases']); // Ajusta la ruta según tu configuración
+   ngOnInit() {
+    console.log("userInfoReceived en ngOnInit: ", this.userInfoReceived);
+
   }
+  
+  async escanearCodigoQR() {
+    try {
+      const { barcodes } = await BarcodeScanner.scan({
+        formats: [BarcodeFormat.QrCode],
+      });
+
+      if (barcodes && barcodes.length > 0) {
+        const qrCodeData = barcodes[0];
+        console.log('Datos del código QR:', qrCodeData);
+        this.cod_clase = qrCodeData; // Asignación del valor al código de asignatura
+      } else {
+        console.log('No se detectaron códigos QR.');
+      }
+    } catch (error) {
+      console.error('Error al escanear el código QR:', error);
+      // Manejar el error según sea necesario
+    }
+  }
+  
+  
+  
+  
+  
 
   convertirTipoUsuarioNombre() {
     if (this.userInfoReceived) {
@@ -56,8 +83,5 @@ export class UsuarioPage implements OnInit {
     return ''; // En caso de que sea undefined
   }
 
-  ngOnInit() {
-    console.log("userInfoReceived en ngOnInit: ", this.userInfoReceived);
-
-  }
+  
 }
