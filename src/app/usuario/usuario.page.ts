@@ -7,7 +7,7 @@ import { UserModel } from 'src/app/models/UserModel';
 import { UserTypeService } from '../service/user-type.service';
 import { SeccionService } from '../service/seccion.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BarcodeScanner, BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
+import { BarcodeScanner ,BarcodeFormat ,LensFacing, BarcodeScannerPlugin } from '@capacitor-mlkit/barcode-scanning';
 
 
 @Injectable({ 
@@ -41,23 +41,14 @@ export class UsuarioPage implements OnInit {
   
   async escanearCodigoQR() {
     try {
-      const { barcodes } = await BarcodeScanner.scan({
-        formats: [BarcodeFormat.QrCode],
-      });
-
-      if (barcodes && barcodes.length > 0) {
-        const qrCodeData = barcodes[0];
-        console.log('Datos del código QR:', qrCodeData);
-        this.cod_clase = qrCodeData; // Asignación del valor al código de asignatura
-      } else {
-        console.log('No se detectaron códigos QR.');
-      }
+      const result = await BarcodeScanner.startScan();
+      console.log('Resultado del escaneo:', result);
+      // Aquí puedes manejar el resultado del escaneo
     } catch (error) {
       console.error('Error al escanear el código QR:', error);
       // Manejar el error según sea necesario
     }
   }
-  
   
   
   
